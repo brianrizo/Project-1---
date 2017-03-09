@@ -4,31 +4,14 @@ var api_secret = "lwx5gv72gPcyD4rV8I-d0u017bcWntRK";
 var baseURL = "https://api-us.faceplusplus.com/facepp/v3/compare";
 var faceset_token = "b4332bb2d89824bb7587d0fb82dc0d7d"
 
-var imgURLs = [imgURL1,imgURL2];
-var confidnce = [];
-
+//api testing impages
 var imgURL1 = "https://cdn.pixabay.com/photo/2013/04/11/19/17/girl-102829_1280.jpg";
 var imgURL2 = "https://cdn.pixabay.com/photo/2015/07/28/19/21/person-864804_1280.jpg";
 var base = "https://cdn.pixabay.com/photo/2013/04/11/19/17/girl-102829_1280.jpg";
 
-//Faceset API create set
-mkFaceset(){
-        var settings = {
-          "async": true,
-          "crossDomain": true,
-          "url": "https://api-us.faceplusplus.com/facepp/v3/faceset/create?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK",
-          "method": "GET",
-          "headers": {
-            "cache-control": "no-cache",
-            "postman-token": "5043b87e-3abc-8cbf-68e4-af23abf89658"
-          }
-        }
+var imgTokens = [imgURL1,imgURL2];
+var confidnce = [];
 
-        $.ajax(settings).done(function (response) {
-          console.log(response);
-        }
-    });
-}
 
 //Detect API get token, define ID and add to Faceset
 detect(){
@@ -42,7 +25,6 @@ detect(){
         "postman-token": "03c51fac-338d-c523-a2dd-d54ffa001410"
       }
     }
-
     $.ajax(settings).done(function (response) {
       console.log(response);
     });
@@ -84,4 +66,23 @@ var settings = {
 $.ajax(settings).done(function (response) {
     console.log(response.confidence);
 });
+}
+
+//Faceset API - create set - done already token assigned to variable
+mkFaceset(){
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api-us.faceplusplus.com/facepp/v3/faceset/create?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK",
+          "method": "GET",
+          "headers": {
+            "cache-control": "no-cache",
+            "postman-token": "5043b87e-3abc-8cbf-68e4-af23abf89658"
+          }
+        }
+
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+        }
+    });
 }
