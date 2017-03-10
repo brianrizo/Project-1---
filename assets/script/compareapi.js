@@ -17,7 +17,7 @@ var images=["http://www.famousbirthdays.com/headshots/mike-colter-2.jpg","http:/
       // evt.preventDefault();
       // var formData = new FormData($(this)[0]);
 
-for(i=0;i<1;i++){
+for(i=0;i<4;i++){
 var settings = {
   "async": true,
   "crossDomain": true,
