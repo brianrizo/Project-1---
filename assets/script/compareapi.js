@@ -32,56 +32,107 @@ var pics= [
 
 ];
 
-$(function () {
-    $(":file").change(function () {
-        if (this.files && this.files[0]) {
-            var reader = new FileReader();
-            reader.onload = imageIsLoaded;
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
+// Variable to store your files
+var files;
+
+// Add events
+$('input[type=file]').on('change', prepareUpload);
+
+// Grab the files and set them to our variable
+function prepareUpload(event)
+{
+  files = event.target.files;
+}
+$('form').on('submit', uploadFiles);
+
+// Catch the form submit and upload the files
+function uploadFiles(event)
+{
+    event.stopPropagation(); // Stop stuff happening
+    event.preventDefault(); // Totally stop stuff happening
+
+    // START A LOADING SPINNER HERE
+
+    // Create a formdata object and add the files
+var data = new FormData();
+$.each(files, function(key, value)
+{
+    data.append(key, value);
 });
-
-function imageIsLoaded(e) {
-    $('#myImg').attr('src', e.target.result);
-};
-
-      $("form").submit(function(evt){   
-      evt.preventDefault();
-      var formData = new FormData($(this)[0]);
 
 
   event.preventDefault();
 
-   var timer = setInterval(function() {
-    $.ajax(settings).done(function (response) {
-    console.log(response);
-    });
-      i++;
-
-      if(i === 4){
-       clearInterval(timer);
-       timer = 0;
-      }
-
-   }, 1300);
-
-});
-
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://api-us.faceplusplus.com/facepp/v3/compare?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK&image_url1=https://s-media-cache-ak0.pinimg.com/236x/dc/24/0e/dc240e2dff96e8127bc616c2ba565799.jpg",
+  "url": "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK",
   "method": "POST",
   "headers": {
     "cache-control": "no-cache",
-    "postman-token": "28ded331-45ff-799f-d500-05119596ba25"
+    "postman-token": "3ce6e919-a037-c5e0-b940-c465c36c6db7"
   },
   "processData": false,
   "contentType": false,
   "mimeType": "multipart/form-data",
-  "data": "formData"
+  "data": data
 }
+console.log('data ', data);
+console.log('files', files);
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+};
+// $(function () {
+//     $(":file").change(function () {
+//         if (this.files && this.files[0]) {
+//             var reader = new FileReader();
+//             reader.onload = imageIsLoaded;
+//             reader.readAsDataURL(this.files[0]);
+//         }
+//     });
+// });
+
+// function imageIsLoaded(e) {
+//     $('#myImg').attr('src', e.target.result);
+// };
+
+//       $("form").submit(function(evt){   
+//       evt.preventDefault();
+//       var formData = new FormData($(this)[0]);
+
+
+//   event.preventDefault();
+
+//    var timer = setInterval(function() {
+//     $.ajax(settings).done(function (response) {
+//     console.log(response);
+//     });
+//       i++;
+
+//       if(i === 4){
+//        clearInterval(timer);
+//        timer = 0;
+//       }
+
+//    }, 1300);
+
+// });
+
+// var settings = {
+//   "async": true,
+//   "crossDomain": true,
+//   "url": "https://api-us.faceplusplus.com/facepp/v3/compare?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK&image_url1=https://s-media-cache-ak0.pinimg.com/236x/dc/24/0e/dc240e2dff96e8127bc616c2ba565799.jpg",
+//   "method": "POST",
+//   "headers": {
+//     "cache-control": "no-cache",
+//     "postman-token": "28ded331-45ff-799f-d500-05119596ba25"
+//   },
+//   "processData": false,
+//   "contentType": false,
+//   "mimeType": "multipart/form-data",
+//   "data": "formData"
+// }
 
  
 
