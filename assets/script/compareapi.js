@@ -35,7 +35,7 @@ var pics= [
 $( "#myBtn" ).click(function() {
 
 console.log('i am here');
-// The Javascript
+
 var fileInput = document.getElementById('the-file');
 var file = fileInput.files[0];
 var formData = new FormData();
@@ -51,13 +51,13 @@ var settings = {
   "url": "https://api-us.faceplusplus.com/facepp/v3/detect?api_key="+api_key+"&api_secret="+api_secret,
   "method": "POST",
   "headers": {
-    "cache-control": "no-cache",
-    "postman-token": "3ce6e919-a037-c5e0-b940-c465c36c6db7"
+    "cache-control": "no-cache"
   },
   "processData": false,
   "contentType": false,
   "mimeType": "multipart/form-data",
-  "data": "formData"
+  "data": formData,
+  "dataType": "json"
 }
 console.log('data ', file);
 console.log('form', formData);
