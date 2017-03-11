@@ -32,41 +32,23 @@ var pics= [
 
 ];
 
-// Variable to store your files
-var files;
+$( "#myBtn" ).click(function() {
 
-// Add events
-$('input[type=file]').on('change', prepareUpload);
+console.log('i am here');
+// The Javascript
+var fileInput = document.getElementById('the-file');
+var file = fileInput.files[0];
+var formData = new FormData();
+formData.append('file', file);
+ event.preventDefault();
 
-// Grab the files and set them to our variable
-function prepareUpload(event)
-{
-  files = event.target.files;
-}
-$('form').on('submit', uploadFiles);
+   ajaxCall();
 
-// Catch the form submit and upload the files
-function uploadFiles(event)
-{
-    event.stopPropagation(); // Stop stuff happening
-    event.preventDefault(); // Totally stop stuff happening
-
-    // START A LOADING SPINNER HERE
-
-    // Create a formdata object and add the files
-var data = new FormData();
-$.each(files, function(key, value)
-{
-    data.append(key, value);
-});
-
-
-  event.preventDefault();
-
+function ajaxCall(){
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK",
+  "url": "https://api-us.faceplusplus.com/facepp/v3/detect?api_key="+api_key+"&api_secret="+api_secret,
   "method": "POST",
   "headers": {
     "cache-control": "no-cache",
@@ -75,14 +57,19 @@ var settings = {
   "processData": false,
   "contentType": false,
   "mimeType": "multipart/form-data",
-  "data": data
+  "data": "formData"
 }
-console.log('data ', data);
-console.log('files', files);
+console.log('data ', file);
+console.log('form', formData);
+
+
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
-};
+}
+});
+
+
 // $(function () {
 //     $(":file").change(function () {
 //         if (this.files && this.files[0]) {
