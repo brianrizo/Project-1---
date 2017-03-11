@@ -78,7 +78,7 @@ var settings = {
     "postman-token": "28ded331-45ff-799f-d500-05119596ba25"
   },
   "processData": false,
-  "contentType": bytesArray,
+  "contentType": false,
   "mimeType": "multipart/form-data",
   "data": "formData"
 }
