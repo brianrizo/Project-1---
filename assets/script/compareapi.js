@@ -95,11 +95,11 @@ $.ajax(settings).done(function (response) {
  console.log(response.results[0].confidence);
  console.log('confidence',conf);
 
+ //find character name in character object and assing to cName
  var select = "T" + isMe;
  console.log('select', select);
  cName = characters[select];
  console.log(cName);
-
 
 });
 
