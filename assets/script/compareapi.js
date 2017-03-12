@@ -16,9 +16,11 @@ var faceset_token = "b4332bb2d89824bb7587d0fb82dc0d7d";
 //URL of user picture to be checked against online album
 var imgURL = "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg";
 //mathced picture token
-var isME = "";
+var isME;
 //confidence level for match
-var conf = "";
+var conf;
+//name of character
+var cName; 
 
 //list of picture URLs
 var pics= [
@@ -80,11 +82,25 @@ var settings = {
 }
 //Ajax API call
 $.ajax(settings).done(function (response) {
-	
+
+ console.log(response);	
+
  //capture closest matched image. 
  isMe = response.results[0].face_token;
+ console.log(response.results[0].face_token);
+ console.log('isme',isMe);
+
  //capture confidence level of closest matched image. 
  conf = response.results[0].confidence; 
+ console.log(response.results[0].confidence);
+ console.log('confidence',conf);
+
+ var select = "T" + isMe;
+ console.log('select', select);
+ cName = characters[select];
+ console.log(cName);
+
 
 });
+
 
