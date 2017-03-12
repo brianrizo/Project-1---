@@ -1,10 +1,26 @@
+//This code accesses the faceplusplus.com api and compares
+//a provided URL to an image against an online album of 
+//actors that have played different marvel characters.
+//The response of the API is the token id of the closest matching
+//image, and a confidence level. It also returns other items
+//which are not used in this app, such as a facial recognition
+//map of the image provided. 
+
 
 var api_key = 	"wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw";
 var api_secret = "lwx5gv72gPcyD4rV8I-d0u017bcWntRK";
+//api url
 var baseURL = "https://api-us.faceplusplus.com/facepp/v3/compare";
+//token for online album
 var faceset_token = "b4332bb2d89824bb7587d0fb82dc0d7d";
+//URL of user picture to be checked against online album
+var imgURL = "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg";
+//mathced picture token
+var isME = "";
+//confidence level for match
+var conf = "";
 
-
+//list of picture URLs
 var pics= [
 "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg",
 "http://media.gettyimages.com/photos/actor-charlie-cox-attends-the-premiere-of-stardust-at-the-savoy-on-picture-id77242402",
@@ -27,6 +43,8 @@ var pics= [
 "https://s-media-cache-ak0.pinimg.com/originals/bc/26/80/bc26806334968588e24a67b79fccb5ad.jpg",
 "https://i1.wp.com/www.workingauthor.com/wp-content/uploads/d23-expo-2011-robert-downey-jr-headshot.jpg"
 ];
+
+//list of characters with corresponding album picture token
 var characters = {
 Tfeca35057041f5317fc13e82d845ecf9: "ProfessorX",
 Tfeca35057041f5317fc13e82d845ecf9: "ProfessorX",
@@ -48,35 +66,25 @@ T18e2e8543ccb1c9ec1e2ec64ad2e096c: "Beast",
 T0cccbec4df216ab95c458aa1c6745524: "Cyclops",
 Td2d15e5993dde61d502314a7f7a53243: "KittyPryde" 				
 };
-var imgURL = "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg";
+
+//Ajax API call settings
 var settings = {
   "async": true,
   "crossDomain": true,
   "url": "https://api-us.faceplusplus.com/facepp/v3/search?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK&image_url="+imgURL+"&faceset_token=b4332bb2d89824bb7587d0fb82dc0d7d",
   "method": "POST",
   "headers": {
-    "cache-control": "no-cache",
-    "postman-token": "a851d393-907e-e427-cc47-f761b37a06af"
+  "cache-control": "no-cache",
+  "postman-token": "a851d393-907e-e427-cc47-f761b37a06af"
   }
 }
-
+//Ajax API call
 $.ajax(settings).done(function (response) {
-  console.log(response);
+	
+ //capture closest matched image. 
+ isMe = response.results[0].face_token;
+ //capture confidence level of closest matched image. 
+ conf = respons.results[0].confidence; 
+
 });
-
-// var settings = {
-//   "async": true,
-//   "crossDomain": true,
-//   "url": "https://api-us.faceplusplus.com/facepp/v3/search?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK&image_url=https%3A%2F%2Fscontent.xx.fbcdn.net%2Fv%2Ft1.0-9%2F14192080_1273370579340915_2636782440151981014_n.jpg%3Foh%3Deacd8fc7fd1b1900cb9d39569b68a7f2%26oe%3D596E8AED&faceset_token=b4332bb2d89824bb7587d0fb82dc0d7d",
-//   "method": "POST",
-//   "headers": {
-//     "cache-control": "no-cache",
-//     "postman-token": "bd702e2f-98b2-c6e2-709b-c5b2160659c3"
-//   }
-// }
-
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-// });
-
 
