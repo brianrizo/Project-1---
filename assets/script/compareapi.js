@@ -3,7 +3,7 @@ var api_key = 	"wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw";
 var api_secret = "lwx5gv72gPcyD4rV8I-d0u017bcWntRK";
 var baseURL = "https://api-us.faceplusplus.com/facepp/v3/compare";
 var faceset_token = "b4332bb2d89824bb7587d0fb82dc0d7d";
-var imgURL = "https://scontent.xx.fbcdn.net/v/t1.0-9/14192080_1273370579340915_2636782440151981014_n.jpg?oh=eacd8fc7fd1b1900cb9d39569b68a7f2&oe=596E8AED";
+
 
 var pics= [
 "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg",
@@ -48,18 +48,35 @@ T18e2e8543ccb1c9ec1e2ec64ad2e096c: "Beast",
 T0cccbec4df216ab95c458aa1c6745524: "Cyclops",
 Td2d15e5993dde61d502314a7f7a53243: "KittyPryde" 				
 };
-
+var imgURL = "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg";
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670%2C151.1957&radius=500&types=food&name=cruise&key=AIzaSyB6Ub5x3ZtltFSX4ksgijSOVuB0TNx7Gkc",
-  "method": "GET",
+  "url": "https://api-us.faceplusplus.com/facepp/v3/search?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK&image_url="+imgURL+"&faceset_token=b4332bb2d89824bb7587d0fb82dc0d7d",
+  "method": "POST",
   "headers": {
     "cache-control": "no-cache",
-    "postman-token": "3d69e0d6-a7ae-9a1d-d75b-e8b5fd893e20"
+    "postman-token": "a851d393-907e-e427-cc47-f761b37a06af"
   }
 }
 
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
+
+// var settings = {
+//   "async": true,
+//   "crossDomain": true,
+//   "url": "https://api-us.faceplusplus.com/facepp/v3/search?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK&image_url=https%3A%2F%2Fscontent.xx.fbcdn.net%2Fv%2Ft1.0-9%2F14192080_1273370579340915_2636782440151981014_n.jpg%3Foh%3Deacd8fc7fd1b1900cb9d39569b68a7f2%26oe%3D596E8AED&faceset_token=b4332bb2d89824bb7587d0fb82dc0d7d",
+//   "method": "POST",
+//   "headers": {
+//     "cache-control": "no-cache",
+//     "postman-token": "bd702e2f-98b2-c6e2-709b-c5b2160659c3"
+//   }
+// }
+
+// $.ajax(settings).done(function (response) {
+//   console.log(response);
+// });
+
+
