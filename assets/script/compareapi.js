@@ -84,7 +84,7 @@ $.ajax(settings).done(function (response) {
  //capture closest matched image. 
  isMe = response.results[0].face_token;
  //capture confidence level of closest matched image. 
- conf = respons.results[0].confidence; 
+ conf = response.results[0].confidence; 
 
 });
 
