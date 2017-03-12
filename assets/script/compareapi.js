@@ -52,11 +52,11 @@ Td2d15e5993dde61d502314a7f7a53243: "KittyPryde"
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://api-us.faceplusplus.com/facepp/v3/search?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK&image_url=https%3A%2F%2Fscontent.xx.fbcdn.net%2Fv%2Ft1.0-9%2F14192080_1273370579340915_2636782440151981014_n.jpg%3Foh%3Deacd8fc7fd1b1900cb9d39569b68a7f2%26oe%3D596E8AED&faceset_token=b4332bb2d89824bb7587d0fb82dc0d7d",
-  "method": "POST",
+  "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670%2C151.1957&radius=500&types=food&name=cruise&key=AIzaSyB6Ub5x3ZtltFSX4ksgijSOVuB0TNx7Gkc",
+  "method": "GET",
   "headers": {
     "cache-control": "no-cache",
-    "postman-token": "26a677b9-9e1e-f35b-7053-6c72592d20c8"
+    "postman-token": "3d69e0d6-a7ae-9a1d-d75b-e8b5fd893e20"
   }
 }
 
