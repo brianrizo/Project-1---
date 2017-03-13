@@ -14,7 +14,7 @@ var baseURL = "https://api-us.faceplusplus.com/facepp/v3/compare";
 //token for online album
 var faceset_token = "b4332bb2d89824bb7587d0fb82dc0d7d";
 //URL of user picture to be checked against online album
-var imgURL = "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg";
+var imgURL = "https://s-media-cache-ak0.pinimg.com/originals/bc/26/80/bc26806334968588e24a67b79fccb5ad.jpg";
 //mathced picture token
 var isME;
 //confidence level for match
@@ -49,7 +49,6 @@ var pics= [
 //list of characters with corresponding album picture token
 var characters = {
 Tfeca35057041f5317fc13e82d845ecf9: "ProfessorX",
-Tfeca35057041f5317fc13e82d845ecf9: "ProfessorX",
 T850ee1427ef09724c4d11e1d0de71ba8: "Daredevil",
 T8d40cc0238272eb311f8761e353d998c: "Deadpool",
 T36ab889c3a75382de799c658e1f4c3ec: "Thor",
@@ -66,7 +65,10 @@ T17da4a2ad5f7122269fc249607b59233: "DoctorStrange",
 Ta72711e158159fe6a72fb9e948da54f3: "InvisibleWoman",
 T18e2e8543ccb1c9ec1e2ec64ad2e096c: "Beast",
 T0cccbec4df216ab95c458aa1c6745524: "Cyclops",
-Td2d15e5993dde61d502314a7f7a53243: "KittyPryde" 				
+Td2d15e5993dde61d502314a7f7a53243: "KittyPryde",
+Ta72711e158159fe6a72fb9e948da54f3: "InvisibleWoman",
+T0688410c4d38eb916ff5a3df166debdc:  "Rogue",
+T39f7e0b54fd2047fbe76f0649c83001:   "IronMan" 				
 };
 
 //Ajax API call settings
@@ -87,20 +89,18 @@ $.ajax(settings).done(function (response) {
 
  //capture closest matched image. 
  isMe = response.results[0].face_token;
- console.log(response.results[0].face_token);
- console.log('isme',isMe);
+ console.log('My Token: ',isMe);
 
  //capture confidence level of closest matched image. 
  conf = response.results[0].confidence; 
- console.log(response.results[0].confidence);
- console.log('confidence',conf);
+ console.log('Confidence Level: ',conf);
 
  //find character name in character object and assing to cName
  var select = "T" + isMe;
- console.log('select', select);
  cName = characters[select];
- console.log(cName);
+ console.log("My Name: ",cName);
 
 });
 
 
+  
