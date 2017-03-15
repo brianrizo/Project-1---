@@ -138,12 +138,12 @@ var settings = {
 
    //find character name in character object and assing to cName
    select = "T" + isMe;
-   
+   console.log("select",select);
   fb(select);
 });
 }
-
-/////////// Initialize Firebase /////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+// Initialize Firebase
 function fb(select){
    var config = {
     apiKey: "AIzaSyDAk9dNy7CKRxaxT0v3B0ABZQmhwgiy96A",
@@ -153,17 +153,19 @@ function fb(select){
     messagingSenderId: "1038168146219"
   };
   firebase.initializeApp(config);
-//Get Characters Name from Firebase Database
-    var dataRef = firebase.database().ref('/characters');
-    dataRef.once("value")
-    .then(function(snapshot) {
-    var name = snapshot.child(select).val();
-//Call marvel API with character name passed
-   Marvel(name);
+
+  var dataRef = firebase.database().ref('/characters');
+  dataRef.once("value")
+  .then(function(snapshot) {
+  var name1 = snapshot.child(select).val(); 
+  console.log('Character Name: ', name1);
+  Marvel(name1);
+    
+
   });
 
 }
-///////////////////End firebase///////////////////////////////////////////////
+
 function Marvel(cName){
     var PRIV_KEY = "feb2aceadb1a26296c6979ccc191a9fc7db1498f";     
     var PUBLIC_KEY = "2da61ccae36a2d935be6acf3e8901868";
