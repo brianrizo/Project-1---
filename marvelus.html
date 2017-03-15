@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Marvel-Us</title>
+<!-- Compiled and minified Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="assets/css/marvelus.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+</head>
+  <body>
+    <!-- Navigation Menu Bar -->
+    <nav class="white" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#home" class="brand-logo"><img class="  mlogo" src="assets/images/MarvelUs.png"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a id="menu" href="#home">Home</a></li>
+        <li><a id="menu" href="#match">Match Me</a></li>
+        <li><a id="menu" href="#about">About Us</a></li>
+        <li><a id="menu" href="#next">Next Steps</a></li>
+      </ul>
+      <!-- Mobile Navigation Menu Bar-->
+      <ul id="nav-mobile" class="side-nav">
+        <li><a id="menu" href="#home">Home</a></li>
+        <li><a id="menu" href="#match">Match Me</a></li>
+        <li><a id="menu" href="#about">About Us</a></li>
+        <li><a id="menu" href="#next">Next Steps</a></li>
+      </ul>
+      <a id ="menu" href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+    </nav>
+    <!-- Header background image with text -->
+    <div id="index-banner"> 
+      <div id="home" class="section no-pad-bot">
+        <div class ="container">
+          <br><br>
+        <div class="row center background">
+          <h2 class="header col s12 white-text">Find your Marvel match !</h2>
+          <a class="start btn amber waves-effect" href="#match">Start<i class="material-icons right">play_arrow</i></a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <br><br>
+    <!-- Main section with user inputs and web-app functionality -->
+
+    <div id="match" class="container">
+      <div class="section">
+      <h1 class="look center"># Marvel Match Time</h1>
+      <h3 class="look center blue-text">Let's get started . . .</h3>
+        <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">insert_link</i>
+                  <input id="link" type="text" class="validate">
+                  <label for="icon_prefix">Enter Your Image Link Here</label>
+                  <button id="submit" class="btn waves-effect waves-light teal" type="submit" name="action">Submit Link
+                  </button>
+                  <br><br><br><br><br>
+                </div>
+              </div>
+            </form>
+        </div>
+      <!-- <form action="#">
+          <div class="file-field input-field">
+            <div class="btn waves-effect waves-light orange">
+              <span>Upload Selfie</span><i class="material-icons right">add_a_photo</i>
+              <input type="file" onchange="readURL(this);"/>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+         --><!-- </form> -->
+
+        <!--   Image Match Section   -->
+        <div class="row ">
+          <div id="box1" class="box col s12 m5">
+            <div class="icon-block">
+              <h2 class="center blue-text"><i class="material-icons">file_upload</i></h2>
+              <h5 class="center">User uploaded image</h5>
+            </div>
+          </div>
+        <div class="find col s12 m2">
+          <button class="find btn waves-effect waves-light red" type="submit" name="action">Find Match
+            <i class="material-icons right">face</i>
+          </button>
+        </div>
+          <div id="box2" class="box col s12 m5">
+            <div class="icon-block">
+              <h2 class="center blue-text"><i class="material-icons">people_outline</i></h2>
+              <h5 class="center">Marvel character Actor match</h5>
+
+              <p class="light">API image match</p>
+            </div>
+          </div>
+        </div>
+      <br><br>
+
+      <div class="section">
+
+<!-- Modal Trigger -->
+        <a class="modal-trigger waves-effect waves-light btn blue" href="#modal1">More Info <i class="material-icons right">more</i></a>
+        
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4>Marvel Character Details</h4>
+              <p>Random Facts</p>
+              <img id="ID" class="center" src="assets/images/HulkID.jpg">
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">I'm Finished</a>
+          </div>
+        </div>        
+      </div>
+      
+    </div>
+    </div>
+      <div class="section row col s12 m12">
+        <a class="next btn amber waves-effect" href="#about">Next
+        <i class="material-icons right">arrow_forward</i></a>
+      </div>
+    <!-- Dev Team Section -->
+    
+    <div id="about" class="fantastic5">
+      <h1 class="title center">Fantastic</h1>
+      <img id="F5"  src="assets/images/F5.jpg">
+      <!--   Team Section  -->
+      <div class="row">
+        <div class="col s12 m1"></div>
+          <div class="bio col s12 m2">
+            <div class="icon-block">
+              <img class="team" src="assets/images/brian.png">
+              <h5 class="center dev">Brian Rizo </h5>
+
+              <p class="light">Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a premiere member of both the X-Men and the Avengers.</p>
+            </div>
+          </div>
+
+          <div class="bio col s12 m2">
+            <div class="icon-block">
+              <img class="team" src="assets/images/mark.png">
+              <h5 class="center dev">Mark Ring</h5>
+
+              <p class="light">Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a  premiere member of both the X-Men and the Avengers.</p>
+            </div>
+          </div>
+
+          <div class="bio col s12 m2">
+            <div class="icon-block">
+              <img class="team" src="assets/images/cale.png">
+              <h5 class="center dev">Cale Maddox</h5>
+
+              <p class="light">Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a premiere member of both the X-Men and the Avengers.</p>
+            </div>
+          </div>
+
+          <div class="bio col s12 m2">
+            <div class="icon-block">
+              <img class="team" src="assets/images/ash.png">
+              <h5 class="center dev">Ash Svendsen</h5>
+
+              <p class="light">Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a premiere member of both the X-Men and the Avengers.</p>
+            </div>
+          </div>
+
+          <div class="bio col s12 m2">
+            <div class="icon-block">
+              <h2 class="center black-text"><i class="material-icons">account_circle</i></h2>
+              <h5 class="center dev">Martin Denis</h5>
+
+              <p class="light">Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a premiere member of both the X-Men and the Avengers.</p>
+            </div>
+          </div>
+
+          <!-- <div class="row center col s12 m12">
+            <p class="light">* The Fantastic 5 is a special team that was brought together by sheer fate. Dr. Dan and his squad of notorious TA's decided it was now time to assemble a group of some of the strongest individuals that have ever coded. We each possess a unique power that together cannot be stopped...Let our powers combine!</p>
+          </div> -->
+        <div class="row col s12 m12">
+          <div class="section row">
+            <a class="next btn amber waves-effect" href="#next">Next
+            <i class="material-icons right">arrow_forward</i></a>
+          </div>
+        </div>
+      </div>
+    
+
+    <!-- Next Gen Development Section -->
+    <div id="next" class="nextDev">
+      <img id="ns"  src="assets/images/next-steps.png">
+      <!--   Team Section  -->
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="icon-block">
+            <h2 class="center white-text"><i class="material-icons">extension</i></h2>
+            <h5 class="center steps">Step 1</h5>
+
+            <p class="light2">Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a premiere member of both the X-Men and the Avengers.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m6">
+          <div class="icon-block">
+            <h2 class="center white-text"><i class="material-icons">extension</i></h2>
+            <h5 class="center steps">Step 2</h5>
+
+            <p class="light2">Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he's a premiere member of both the X-Men and the Avengers.</p>
+          </div>          
+        </div>
+      </div>
+
+      <div class="row center">
+        <img class="mass" src="assets/images/marvel-intro.png">
+      </div>
+
+      <div class="section row">
+        <a class="next btn amber waves-effect" href="#home">Top
+        <i class="material-icons right">arrow_upward</i></a>
+      </div>
+    <!-- Footer Section -->
+      <div class="footer-copyright center white">
+        <div class="container">
+        <a class="black-text">2017 &copy Marvel-Us Entertainment, Team: Fantastic 5!</a>
+        </div>
+      </div>
+    </footer>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <script src="assets/javascript/marvelapp.js"></script>
+  </body>
+</html>

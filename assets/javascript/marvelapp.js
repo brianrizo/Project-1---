@@ -1,3 +1,42 @@
+$(document).ready(function(){
+  });
+    // show picutre on enter and append to box1 
+  // function showLink(input) {
+            
+  //           var imgur = $("#link").val().trim();
+
+  //           reader.onload = function (e) {
+  //               $('#box1')
+  //                   .attr('src', e.target.result)
+  //                   .width(300)
+  //                   .height(200);
+  //           };
+
+  //           reader.readAsDataURL(input.files[0]);
+  //       }
+  //   }
+
+// This button function appends image from link into the html box1
+   $("#submit").on("click", function(event){
+    event.preventDefault();
+    
+    var image = $("#link").val().trim();
+    console.log(image);
+
+    var img = $("<img>");
+
+    img.attr("src", image);
+
+    $("#box1").html(img);
+
+    var imgURL = $("#link").val();
+    // imgURL = String(imgURL);
+    console.log(imgURL);
+
+    Face(imgURL);
+
+});
+ 
 //This code accesses the faceplusplus.com api and compares
 //a provided URL to an image against an online album of 
 //actors that have played different marvel characters.
@@ -7,14 +46,15 @@
 //map of the image provided. 
 
 
-var api_key = 	"wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw";
+var api_key =   "wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw";
 var api_secret = "lwx5gv72gPcyD4rV8I-d0u017bcWntRK";
 //api url
 var baseURL = "https://api-us.faceplusplus.com/facepp/v3/compare";
 //token for online album
 var faceset_token = "b4332bb2d89824bb7587d0fb82dc0d7d";
 //URL of user picture to be checked against online album
-var imgURL = $("#submit");
+// var imgURL = "";
+// console.log(imgURL);
 //mathced picture token
 var isME;
 //confidence level for match
@@ -48,7 +88,7 @@ var pics= [
 
 //list of characters with corresponding album picture token
 var characters = {
-Tfeca35057041f5317fc13e82d845ecf9: "ProfessorX",
+Tfeca35057041f5317fc13e82d845ecf9: "Professor X",
 T850ee1427ef09724c4d11e1d0de71ba8: "Black Panther",
 T8d40cc0238272eb311f8761e353d998c: "Deadpool",
 T36ab889c3a75382de799c658e1f4c3ec: "Thor",
@@ -58,7 +98,7 @@ Td55a589c2d63b43461803e21251bc06d: "Iceman",
 T43ce09c7070b1eb442a3abbe2e3fd00d: "Hawkeye",
 T5165cef7ef95eb3e521421232c4598c1: "Hulk",
 T257d6a70441c8deedb09e3ca3a57d52d: "Wolverine",
-Tdb42371a7d45b946ea4c66c4c8c4b504: "Captain Marvel",
+Tdb42371a7d45b946ea4c66c4c8c4b504: "Captain Marvel (Carol Danvers)",
 T035230f753cdd5cf3c6f1f962ac56125: "Spiderman",
 T046404a514ea10b270f61fd3d2b56f8d: "Daredevil",
 T17da4a2ad5f7122269fc249607b59233: "Doctor Strange",
@@ -66,10 +106,11 @@ Ta72711e158159fe6a72fb9e948da54f3: "Invisible Woman",
 T18e2e8543ccb1c9ec1e2ec64ad2e096c: "Beast",
 T0cccbec4df216ab95c458aa1c6745524: "Cyclops",
 Td2d15e5993dde61d502314a7f7a53243: "Kitty Pryde",
+Ta72711e158159fe6a72fb9e948da54f3: "Invisible Woman",
 T0688410c4d38eb916ff5a3df166debdc: "Rogue",
-T39f7e0b54fd2047fbe76f0649c83001:  "Iron Man" 				
+T39f7e0b54fd2047fbe76f0649c83001c:  "Iron Man"        
 };
-
+function Face(imgURL){
 //Ajax API call settings
 var settings = {
   "async": true,
@@ -81,34 +122,38 @@ var settings = {
   "postman-token": "a851d393-907e-e427-cc47-f761b37a06af"
   }
 }
-//Ajax API call
-$.ajax(settings).done(function (response) {
 
- console.log(response);	
+  //Ajax API call
+  $.ajax(settings).done(function (response) {
 
- //capture closest matched image. 
- isMe = response.results[0].face_token;
- console.log('My Token: ',isMe);
+   console.log(response); 
 
- //capture confidence level of closest matched image. 
- conf = response.results[0].confidence; 
- console.log('Confidence Level: ',conf);
+   //capture closest matched image. 
+   isMe = response.results[0].face_token;
+   console.log('My Token: ',isMe);
 
- //find character name in character object and assing to cName
- var select = "T" + isMe;
- cName = characters[select];
- console.log("My Name: ",cName);
+   //capture confidence level of closest matched image. 
+   conf = response.results[0].confidence; 
+   console.log('Confidence Level: ',conf);
 
- Marvel(cName);
+   //find character name in character object and assing to cName
+   var select = "T" + isMe;
+   cName = characters[select];
+   console.log("My Name: ",cName);
 
+   Marvel(cName);
+
+   console.log("please let this work" + imgURL);
 
 });
-	function Marvel(cName){
-	var PRIV_KEY = "feb2aceadb1a26296c6979ccc191a9fc7db1498f";     
-	var PUBLIC_KEY = "2da61ccae36a2d935be6acf3e8901868";
-  	var name = cName;
+}
 
-	console.log("hey");       
+function Marvel(cName){
+    var PRIV_KEY = "feb2aceadb1a26296c6979ccc191a9fc7db1498f";     
+    var PUBLIC_KEY = "2da61ccae36a2d935be6acf3e8901868";
+    var name = cName;
+
+    console.log("hey");       
 
     var ts = 1;
     var hash = "301cc66ea78b36c904bef4d33fb1bd02";
@@ -118,7 +163,8 @@ $.ajax(settings).done(function (response) {
        dataType: "json",
        url: marvelAPI
     }).done(function(response) {
-             
+        
+        console.log(response);     
         console.log(response.data.results[0].description);
         console.log(response.data.results[0].name);
         console.log(response.data.results[0].urls[0].url);
@@ -127,3 +173,14 @@ $.ajax(settings).done(function (response) {
 
     });
 }
+    
+
+// Mobile Menu Bar functionality //
+  (function($){
+  $(function(){
+
+    $('.button-collapse').sideNav();
+    $('.modal').modal();
+
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
