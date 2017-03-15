@@ -142,8 +142,8 @@ var settings = {
   fb(select);
 });
 }
-//////////////////////////////////////////////////////////////////////////////////////
-// Initialize Firebase
+
+/////////// Initialize Firebase /////////////////////////////////////////////
 function fb(select){
    var config = {
     apiKey: "AIzaSyDAk9dNy7CKRxaxT0v3B0ABZQmhwgiy96A",
@@ -153,18 +153,17 @@ function fb(select){
     messagingSenderId: "1038168146219"
   };
   firebase.initializeApp(config);
-
-  var dataRef = firebase.database().ref('/characters');
-dataRef.once("value")
-  .then(function(snapshot) {
-    var name = snapshot.child(select).val(); // {first:"Ada",last:"Lovelace"}
-    // var cNamer = snapshot.child(select).val(); // "Ada"
-    console.log('first: ', name);
-    // console.log('second: ', cNamer);
+//Get Characters Name from Firebase Database
+    var dataRef = firebase.database().ref('/characters');
+    dataRef.once("value")
+    .then(function(snapshot) {
+    var name = snapshot.child(select).val();
+//Call marvel API with character name passed
+   Marvel(name);
   });
 
 }
-
+///////////////////End firebase///////////////////////////////////////////////
 function Marvel(cName){
     var PRIV_KEY = "feb2aceadb1a26296c6979ccc191a9fc7db1498f";     
     var PUBLIC_KEY = "2da61ccae36a2d935be6acf3e8901868";
