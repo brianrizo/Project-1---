@@ -1,5 +1,6 @@
 $(document).ready(function(){
   });
+
     // show picutre on enter and append to box1 
   // function showLink(input) {
             
@@ -52,16 +53,13 @@ var api_secret = "lwx5gv72gPcyD4rV8I-d0u017bcWntRK";
 var baseURL = "https://api-us.faceplusplus.com/facepp/v3/compare";
 //token for online album
 var faceset_token = "b4332bb2d89824bb7587d0fb82dc0d7d";
-//URL of user picture to be checked against online album
-// var imgURL = "";
-// console.log(imgURL);
 //mathced picture token
 var isME;
 //confidence level for match
 var conf;
 //name of character
 var cName; 
-
+var select = "";
 //list of picture URLs
 var pics= [
 "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg",
@@ -110,6 +108,8 @@ Ta72711e158159fe6a72fb9e948da54f3: "Invisible Woman",
 T0688410c4d38eb916ff5a3df166debdc: "Rogue",
 T39f7e0b54fd2047fbe76f0649c83001c:  "Iron Man"        
 };
+
+
 function Face(imgURL){
 //Ajax API call settings
 var settings = {
@@ -137,15 +137,32 @@ var settings = {
    console.log('Confidence Level: ',conf);
 
    //find character name in character object and assing to cName
-   var select = "T" + isMe;
-   cName = characters[select];
-   console.log("My Name: ",cName);
-
-   Marvel(cName);
-
-   console.log("please let this work" + imgURL);
-
+   select = "T" + isMe;
+   
+  fb(select);
 });
+}
+//////////////////////////////////////////////////////////////////////////////////////
+// Initialize Firebase
+function fb(select){
+   var config = {
+    apiKey: "AIzaSyDAk9dNy7CKRxaxT0v3B0ABZQmhwgiy96A",
+    authDomain: "marvelus-19745.firebaseapp.com",
+    databaseURL: "https://marvelus-19745.firebaseio.com",
+    storageBucket: "marvelus-19745.appspot.com",
+    messagingSenderId: "1038168146219"
+  };
+  firebase.initializeApp(config);
+
+  var dataRef = firebase.database().ref('/characters');
+dataRef.once("value")
+  .then(function(snapshot) {
+    var name = snapshot.child(select).val(); // {first:"Ada",last:"Lovelace"}
+    // var cNamer = snapshot.child(select).val(); // "Ada"
+    console.log('first: ', name);
+    // console.log('second: ', cNamer);
+  });
+
 }
 
 function Marvel(cName){
