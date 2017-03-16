@@ -87,7 +87,7 @@ var pics= [
 //list of characters with corresponding album picture token
 var characters = {
 Tfeca35057041f5317fc13e82d845ecf9: "Professor X",
-T850ee1427ef09724c4d11e1d0de71ba8: "Black Panther",
+T850ee1427ef09724c4d11e1d0de71ba8: "Daredevil",
 T8d40cc0238272eb311f8761e353d998c: "Deadpool",
 T36ab889c3a75382de799c658e1f4c3ec: "Thor",
 Tec3df6a5995d6a1b03841548f5afa542: "Jean Grey",
@@ -98,7 +98,7 @@ T5165cef7ef95eb3e521421232c4598c1: "Hulk",
 T257d6a70441c8deedb09e3ca3a57d52d: "Wolverine",
 Tdb42371a7d45b946ea4c66c4c8c4b504: "Captain Marvel (Carol Danvers)",
 T035230f753cdd5cf3c6f1f962ac56125: "Spiderman",
-T046404a514ea10b270f61fd3d2b56f8d: "Daredevil",
+T046404a514ea10b270f61fd3d2b56f8d: "Black Panther",
 T17da4a2ad5f7122269fc249607b59233: "Doctor Strange",
 Ta72711e158159fe6a72fb9e948da54f3: "Invisible Woman",
 T18e2e8543ccb1c9ec1e2ec64ad2e096c: "Beast",
