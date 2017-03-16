@@ -138,8 +138,18 @@ var settings = {
 
    //find character name in character object and assing to cName
    select = "T" + isMe;
+   cName = characters[select];
    console.log("select",select);
   fb(select);
+
+  //Linking ID to image selected as response
+   var currentID = '<img src="assets/javascript/FinishedIDs/' +  cName + 'ID.jpg"/>';
+   $("#ID").attr("src","assets/javascript/FinishedIDs/" +  cName + "ID.jpg");
+
+
+   //Debugging
+   console.log(currentID);
+
 });
 }
 //////////////////////////////////////////////////////////////////////////////////////
@@ -161,7 +171,7 @@ function fb(select){
   console.log('Character Name: ', name1);
   Marvel(name1);
     
-
+ 
   });
 
 }
