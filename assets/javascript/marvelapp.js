@@ -198,6 +198,19 @@ function Marvel(cName){
         console.log(response.data.results[0].urls[0].url);
         console.log(response.data.results[0].urls[1].url);
         console.log("done");
+        var stats = response.data.results[0].urls[0].url
+        var wiki = response.data.results[0].urls[1].url
+        var a = $("<a>");
+        a.attr("href", stats);
+        a.attr("target", "_blank")
+        a.html("MarvelUs Stats");
+        $("#stats").append(a);
+
+        var b = $("<a>");
+        b.attr("href", wiki);
+        b.attr("target", "_blank");
+        b.html("Wiki Page");
+        $("#wiki").append(b);
 
     });
 }
