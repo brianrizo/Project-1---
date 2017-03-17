@@ -36,6 +36,7 @@ var sLink;
 
     Face(imgURL);
 
+
 });
  
 //This code accesses the faceplusplus.com api and compares
@@ -60,6 +61,7 @@ var conf;
 //name of character
 var cName; 
 var select = "";
+
 //list of picture URLs
 var pics= [
 "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg",
@@ -133,8 +135,20 @@ T39f7e0b54fd2047fbe76f0649c83001c: "https://i1.wp.com/www.workingauthor.com/wp-c
 };
 
 
+//Update box2 with matched actor image
+function updateBox2(){
+
+  //Display on DOM box2 matched actor based on initial search
+  sLink = cPic[select];
+  console.log('cpic', cPic[select]);
+  var image2 = $("<img>");
+  image2.attr("src", sLink);
+  $("#box2").html(image2);
+}
+
 //faceplusplus API Function 
 function Face(imgURL){
+
   //Ajax API  settings
   var settings = {
     "async": true,
@@ -169,20 +183,17 @@ function Face(imgURL){
    var currentID = '<img src="assets/javascript/FinishedIDs/' +  cName + 'ID.jpg"/>';
    $("#ID").attr("src","assets/javascript/FinishedIDs/" +  cName + "ID.jpg");
 
-sLink = cPic[select];
-console.log('cpic', cPic[select]);
-var image2 = $("<img>");
-image2.attr("src", sLink);
-$("#box2").html(image2);
+  //update box2 with matched actor
+  updateBox2(); 
 
    //Debugging
    console.log(currentID);
 
 });
 }
-//////////////////////////////////////////////////////////////////////////////////////
-// Initialize Firebase
-function fb(select){
+
+
+   //firebase AJAX settings
    var config = {
     apiKey: "AIzaSyDAk9dNy7CKRxaxT0v3B0ABZQmhwgiy96A",
     authDomain: "marvelus-19745.firebaseapp.com",
@@ -190,18 +201,22 @@ function fb(select){
     storageBucket: "marvelus-19745.appspot.com",
     messagingSenderId: "1038168146219"
   };
+  //initialize firebase
   firebase.initializeApp(config);
 
+  //get database reference
   var dataRef = firebase.database().ref('/characters');
+// Firebase function
+function fb(select){
+  //get character name
   dataRef.once("value")
   .then(function(snapshot) {
   var name1 = snapshot.child(select).val(); 
   console.log('Character Name: ', name1);
-  Marvel(name1);
-    
- 
-  });
 
+  //call Marvel API function with character name
+  Marvel(name1);
+  });
 }
 
 //Marvel API FUNCTION
@@ -231,8 +246,6 @@ function Marvel(cName){
         
         //API response evaluation
         console.log(response);     
-        console.log(response.data.results[0].description);
-        console.log(response.data.results[0].name);
         console.log(response.data.results[0].urls[0].url);
         console.log(response.data.results[0].urls[1].url);
         console.log("done");
@@ -246,17 +259,17 @@ function Marvel(cName){
         a.attr("href", stats);
         a.attr("target", "_blank")
         a.html("Marvel Stats");
-        $("#stats").append(a);
+        $("#stats").empty().append(a);
 
         //Display URL2 on DOM
         var b = $("<a>");
         b.attr("href", wiki);
         b.attr("target", "_blank");
         b.html("Marvel Wiki");
-        $("#wiki").append(b);
+        $("#wiki").empty().append(b);
 
       });
-}//END of Marvel API
+  }//END of Marvel API function
     
 
 // Mobile Menu Bar functionality //
