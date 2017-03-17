@@ -21,13 +21,13 @@ var sLink;
    $("#submit").on("click", function(event){
     event.preventDefault();
     
+    //assign image url to variable
     var image = $("#link").val().trim();
     console.log(image);
 
+    //display image
     var img = $("<img>");
-
     img.attr("src", image);
-
     $("#box1").html(img);
 
     var imgURL = $("#link").val();
