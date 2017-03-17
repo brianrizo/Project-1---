@@ -228,13 +228,13 @@ function Marvel(cName){
         var a = $("<a>");
         a.attr("href", stats);
         a.attr("target", "_blank")
-        a.html("MarvelUs Stats");
+        a.html("Marvel Stats");
         $("#stats").append(a);
 
         var b = $("<a>");
         b.attr("href", wiki);
         b.attr("target", "_blank");
-        b.html("Wiki Page");
+        b.html("Marvel Wiki");
         $("#wiki").append(b);
 
     });
