@@ -130,9 +130,12 @@ background-color: black;
 }
 
 #ID{
-	width: 900px;
-	height: 450px;
+	width: 800px;
+	height: 500px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.material-icons.md-36 { 
+	font-size: 36px; }
