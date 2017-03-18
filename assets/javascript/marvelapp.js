@@ -1,6 +1,10 @@
 $(document).ready(function(){
   });
 var sLink;
+var a;
+var b;
+var stats;
+var wiki;
     // show picutre on enter and append to box1 
   // function showLink(input) {
             
@@ -251,26 +255,35 @@ function Marvel(cName){
         console.log("done");
 
         //Assign URLs to variables
-        var stats = response.data.results[0].urls[0].url
-        var wiki = response.data.results[0].urls[1].url
+        stats = response.data.results[0].urls[0].url
+        wiki = response.data.results[0].urls[1].url
 
         //Display URL1 on DOM
-        var a = $("<a>");
-        a.attr("href", stats);
-        a.attr("target", "_blank")
-        a.html("Marvel Stats");
+        a = $("<button>");
+        a.attr("id", "stats2");
+        a.html("MarvelUs Stats");
         $("#stats").empty().append(a);
 
         //Display URL2 on DOM
-        var b = $("<a>");
-        b.attr("href", wiki);
-        b.attr("target", "_blank");
-        b.html("Marvel Wiki");
+        b = $("<button>");
+        b.attr("id", "wiki2");
+        b.html("Wiki Page");
         $("#wiki").empty().append(b);
 
       });
   }//END of Marvel API function
-    
+    $(document.body).on("click", "#stats2", function(){
+
+     window.open(stats, '_blank');
+
+    });
+    $(document.body).on("click", "#wiki2", function(){
+
+    window.open(wiki, '_blank');
+
+    });
+
+       
 
 // Mobile Menu Bar functionality //
   (function($){
