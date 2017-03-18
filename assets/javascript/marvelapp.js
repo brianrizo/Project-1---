@@ -21,13 +21,13 @@ var sLink;
    $("#submit").on("click", function(event){
     event.preventDefault();
     
+    //assign image url to variable
     var image = $("#link").val().trim();
     console.log(image);
 
+    //display image
     var img = $("<img>");
-
     img.attr("src", image);
-
     $("#box1").html(img);
 
     var imgURL = $("#link").val();
@@ -35,6 +35,7 @@ var sLink;
     console.log(imgURL);
 
     Face(imgURL);
+
 
 });
  
@@ -46,7 +47,7 @@ var sLink;
 //which are not used in this app, such as a facial recognition
 //map of the image provided. 
 
-
+//API key and secret
 var api_key =   "wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw";
 var api_secret = "lwx5gv72gPcyD4rV8I-d0u017bcWntRK";
 //api url
@@ -60,6 +61,7 @@ var conf;
 //name of character
 var cName; 
 var select = "";
+
 //list of picture URLs
 var pics= [
 "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg",
@@ -107,6 +109,8 @@ Td2d15e5993dde61d502314a7f7a53243: "Kitty Pryde",
 T0688410c4d38eb916ff5a3df166debdc: "Rogue",
 T39f7e0b54fd2047fbe76f0649c83001c:  "Iron Man"        
 };
+
+//list of characters with corresponding picture URL
 var cPic = {
 Tfeca35057041f5317fc13e82d845ecf9: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0MzU5ODQ5OF5BMl5BanBnXkFtZTYwODIwODk1._V1_UY317_CR4,0,214,317_AL_.jpg",
 T850ee1427ef09724c4d11e1d0de71ba8: "http://media.gettyimages.com/photos/actor-charlie-cox-attends-the-premiere-of-stardust-at-the-savoy-on-picture-id77242402",
@@ -131,18 +135,31 @@ T39f7e0b54fd2047fbe76f0649c83001c: "https://i1.wp.com/www.workingauthor.com/wp-c
 };
 
 
-function Face(imgURL){
-//Ajax API call settings
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://api-us.faceplusplus.com/facepp/v3/search?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK&image_url="+imgURL+"&faceset_token=b4332bb2d89824bb7587d0fb82dc0d7d",
-  "method": "POST",
-  "headers": {
-  "cache-control": "no-cache",
-  "postman-token": "a851d393-907e-e427-cc47-f761b37a06af"
-  }
+//Update box2 with matched actor image
+function updateBox2(){
+
+  //Display on DOM box2 matched actor based on initial search
+  sLink = cPic[select];
+  console.log('cpic', cPic[select]);
+  var image2 = $("<img>");
+  image2.attr("src", sLink);
+  $("#box2").html(image2);
 }
+
+//faceplusplus API Function 
+function Face(imgURL){
+
+  //Ajax API  settings
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://api-us.faceplusplus.com/facepp/v3/search?api_key=wfvzK0zrgscuPVLLNJg0byB4diiQ8uuw&api_secret=lwx5gv72gPcyD4rV8I-d0u017bcWntRK&image_url="+imgURL+"&faceset_token=b4332bb2d89824bb7587d0fb82dc0d7d",
+    "method": "POST",
+    "headers": {
+    "cache-control": "no-cache",
+    "postman-token": "a851d393-907e-e427-cc47-f761b37a06af"
+    }
+  }
 
   //Ajax API call
   $.ajax(settings).done(function (response) {
@@ -151,35 +168,32 @@ var settings = {
 
    //capture closest matched image. 
    isMe = response.results[0].face_token;
-   console.log('My Token: ',isMe);
 
    //capture confidence level of closest matched image. 
    conf = response.results[0].confidence; 
-   console.log('Confidence Level: ',conf);
 
-   //find character name in character object and assing to cName
+   //find character name in character object and assign to cName
    select = "T" + isMe;
    cName = characters[select];
-   console.log("select",select);
-  fb(select);
+   
+   //Call firebase API to retrieve character Name 
+   fb(select);
 
   //Linking ID to image selected as response
    var currentID = '<img src="assets/javascript/FinishedIDs/' +  cName + 'ID.jpg"/>';
    $("#ID").attr("src","assets/javascript/FinishedIDs/" +  cName + "ID.jpg");
 
-sLink = cPic[select];
-console.log('cpic', cPic[select]);
- var image2 = $("<img>");
- image2.attr("src", sLink);
- $("#box2").html(image2);
+  //update box2 with matched actor
+  updateBox2(); 
+
    //Debugging
    console.log(currentID);
 
 });
 }
-//////////////////////////////////////////////////////////////////////////////////////
-// Initialize Firebase
-function fb(select){
+
+
+   //firebase AJAX settings
    var config = {
     apiKey: "AIzaSyDAk9dNy7CKRxaxT0v3B0ABZQmhwgiy96A",
     authDomain: "marvelus-19745.firebaseapp.com",
@@ -187,58 +201,75 @@ function fb(select){
     storageBucket: "marvelus-19745.appspot.com",
     messagingSenderId: "1038168146219"
   };
+  //initialize firebase
   firebase.initializeApp(config);
 
+  //get database reference
   var dataRef = firebase.database().ref('/characters');
+// Firebase function
+function fb(select){
+  //get character name
   dataRef.once("value")
   .then(function(snapshot) {
   var name1 = snapshot.child(select).val(); 
   console.log('Character Name: ', name1);
-  Marvel(name1);
-    
- 
-  });
 
+  //call Marvel API function with character name
+  Marvel(name1);
+  });
 }
 
+//Marvel API FUNCTION
 function Marvel(cName){
+
+    //AJAX Settings
     var PRIV_KEY = "feb2aceadb1a26296c6979ccc191a9fc7db1498f";     
     var PUBLIC_KEY = "2da61ccae36a2d935be6acf3e8901868";
+
+    //Character Name
     var name = cName;
 
+    //Marvel API saying Hi
     console.log("hey");       
 
     var ts = 1;
     var hash = "301cc66ea78b36c904bef4d33fb1bd02";
 
+    //Query URL
     var marvelAPI = "https://gateway.marvel.com:443/v1/public/characters?name="+ name +"&ts=" + ts + "&apikey=" + PUBLIC_KEY + "&hash=" + hash;
+
+    //AJAX GET
     $.ajax  ({
        dataType: "json",
        url: marvelAPI
-    }).done(function(response) {
+      }).done(function(response) {
         
+        //API response evaluation
         console.log(response);     
-        console.log(response.data.results[0].description);
-        console.log(response.data.results[0].name);
         console.log(response.data.results[0].urls[0].url);
         console.log(response.data.results[0].urls[1].url);
         console.log("done");
+
+        //Assign URLs to variables
         var stats = response.data.results[0].urls[0].url
         var wiki = response.data.results[0].urls[1].url
+
+        //Display URL1 on DOM
         var a = $("<a>");
         a.attr("href", stats);
         a.attr("target", "_blank")
         a.html("Marvel Stats");
-        $("#stats").append(a);
+        $("#stats").empty().append(a);
 
+        //Display URL2 on DOM
         var b = $("<a>");
         b.attr("href", wiki);
         b.attr("target", "_blank");
         b.html("Marvel Wiki");
-        $("#wiki").append(b);
+        $("#wiki").empty().append(b);
 
-    });
-}
+      });
+  }//END of Marvel API function
     
 
 // Mobile Menu Bar functionality //
