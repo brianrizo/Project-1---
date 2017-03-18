@@ -174,7 +174,7 @@ function Face(imgURL){
    isMe = response.results[0].face_token;
 
    //capture confidence level of closest matched image. 
-   conf = response.results[0].confidence; 
+   conf = (response.results[0].confidence).toFixed(0); 
 
    //find character name in character object and assign to cName
    select = "T" + isMe;
@@ -186,6 +186,9 @@ function Face(imgURL){
   //Linking ID to image selected as response
    var currentID = '<img src="assets/javascript/FinishedIDs/' +  cName + 'ID.jpg"/>';
    $("#ID").attr("src","assets/javascript/FinishedIDs/" +  cName + "ID.jpg");
+
+  //Display Confidence match %
+  $(".swap").empty().html(conf + "%");
 
   //update box2 with matched actor
   updateBox2(); 
